@@ -40,7 +40,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authRequest ->
                         authRequest.requestMatchers("/auth/**",
-                                        "/api/fakerData/generate/**")
+                                        "/api/fakerData/generate/**",
+                                        "/crud_Productos/**")
+                                .permitAll()
+                                .requestMatchers("/", "/index")
                                 .permitAll()
                                 .anyRequest().authenticated()
                 )

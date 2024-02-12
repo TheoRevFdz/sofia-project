@@ -1,13 +1,7 @@
 package com.educibertec.sofiaproject.impl;
 
-import com.educibertec.sofiaproject.entity.CapsulaNumber;
-import com.educibertec.sofiaproject.entity.CapsulaProducto;
-import com.educibertec.sofiaproject.entity.CapsulaProveedor;
-import com.educibertec.sofiaproject.entity.CapsulaTipoProducto;
-import com.educibertec.sofiaproject.repositories.INumbersRepository;
-import com.educibertec.sofiaproject.repositories.IProductosRepository;
-import com.educibertec.sofiaproject.repositories.IProveedoresRepository;
-import com.educibertec.sofiaproject.repositories.ITipoProductosRepository;
+import com.educibertec.sofiaproject.entity.*;
+import com.educibertec.sofiaproject.repositories.*;
 import com.educibertec.sofiaproject.services.IFakerDataService;
 import com.educibertec.sofiaproject.util.MessageUtil;
 import lombok.extern.log4j.Log4j2;
@@ -31,6 +25,8 @@ public class FakerDataServiceImpl implements IFakerDataService {
     private IProveedoresRepository provRepository;
     @Autowired
     private IProductosRepository productosRepository;
+    @Autowired
+    private IClientesRepository clientesRepository;
 
     @Override
     public MessageUtil generateFakerData() {
@@ -44,8 +40,10 @@ public class FakerDataServiceImpl implements IFakerDataService {
             if (!respProv) message = message.concat(" | generateProveedor");
             boolean respProd = generateProductos();
             if (!respProd) message = message.concat(" | generateProductos");
+            boolean respCli = generateClients();
+            if (!respCli) message = message.concat(" | generateClients");
 
-            final boolean isSuccess = respGenCapNumb && respTipoProd && respProv && respProd;
+            final boolean isSuccess = respGenCapNumb && respTipoProd && respProv && respProd && respCli;
 
             if (isSuccess) {
                 return MessageUtil.builder()
@@ -66,8 +64,8 @@ public class FakerDataServiceImpl implements IFakerDataService {
     }
 
     private boolean generateCapsulaMumber() {
-        List<CapsulaNumber> listCapNumb = numbersRepository.findAll();
-        if (listCapNumb.isEmpty()) {
+        long contNums = numbersRepository.count();
+        if (contNums == 0) {
             List<CapsulaNumber> capsulasNumber = new ArrayList<>();
             CapsulaNumber capNum1 = CapsulaNumber.builder().prefij("VTA").numeracion(1).build();
             CapsulaNumber capNum2 = CapsulaNumber.builder().prefij("PDT").numeracion(11).build();
@@ -81,14 +79,14 @@ public class FakerDataServiceImpl implements IFakerDataService {
     }
 
     private boolean generateTipoProductos() {
-        Long countTipoProd = tipoProdRepository.count();
+        long countTipoProd = tipoProdRepository.count();
         if (countTipoProd == 0) {
             List<CapsulaTipoProducto> listTipoProd = new ArrayList<>();
             int cont = 0;
             while (cont < 10) {
                 Faker faker = new Faker();
                 CapsulaTipoProducto tipoProd = CapsulaTipoProducto.builder()
-                        .descripcion(faker.name().prefix())
+                        .descripcion(faker.name().name())
                         .build();
                 listTipoProd.add(tipoProd);
                 cont++;
@@ -101,7 +99,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
     }
 
     private boolean generateProveedor() {
-        Long contProv = provRepository.count();
+        long contProv = provRepository.count();
         if (contProv == 0) {
             List<CapsulaProveedor> listProv = new ArrayList<>();
             CapsulaProveedor prov1 = CapsulaProveedor.builder()
@@ -136,7 +134,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
     }
 
     private boolean generateProductos() {
-        Long contProd = productosRepository.count();
+        long contProd = productosRepository.count();
         if (contProd == 0) {
             CapsulaProducto prod1 = CapsulaProducto.builder()
                     .descripcion("COCA COLA 600 ML X UND")
@@ -246,5 +244,30 @@ public class FakerDataServiceImpl implements IFakerDataService {
         return false;
     }
 
-
+    private boolean generateClients() {
+        long contClients = clientesRepository.count();
+        if (contClients == 0) {
+            CapsulaCliente cli1 = CapsulaCliente.builder()
+                    .celular("990584475")
+                    .direccion("LAS ALMENDRAS 136 - SURCO")
+                    .razonsocial("JUAN JOSE MEDINA CACERES")
+                    .rucdni("45525645")
+                    .estado(1)
+                    .build();
+            CapsulaCliente cli2 = CapsulaCliente.builder()
+                    .celular("990682222")
+                    .direccion("VILLA ATAÑO 342 INT A - COMAS")
+                    .razonsocial("BODEGA LUIS FELIPE")
+                    .rucdni("20054212559")
+                    .estado(1)
+                    .build();
+            List<CapsulaCliente> listClient = new ArrayList<>();
+            listClient.add(cli1);
+            listClient.add(cli2);
+            clientesRepository.saveAll(listClient);
+            log.trace("Los CapsulaCliente fueron generadas correctamente.");
+            return true;
+        }
+        return false;
+    }
 }
