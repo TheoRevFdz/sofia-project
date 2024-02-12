@@ -1,0 +1,184 @@
+2024-02-11T12:55:07.481-05:00  INFO 8608 --- [restartedMain] c.e.s.SofiaProjectApplication            : Starting SofiaProjectApplication using Java 17.0.10 with PID 8608 (D:\Documents\DocsWS\WS_Java\sofia-project\target\classes started by Hector in D:\Documents\DocsWS\WS_Java\sofia-project)
+2024-02-11T12:55:07.486-05:00  INFO 8608 --- [restartedMain] c.e.s.SofiaProjectApplication            : The following 1 profile is active: "dev"
+2024-02-11T12:55:07.577-05:00  INFO 8608 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-11T12:55:07.577-05:00  INFO 8608 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-11T12:55:09.523-05:00  INFO 8608 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-11T12:55:09.686-05:00  INFO 8608 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 144 ms. Found 8 JPA repository interfaces.
+2024-02-11T12:55:11.456-05:00  INFO 8608 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-02-11T12:55:11.485-05:00  INFO 8608 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-11T12:55:11.486-05:00  INFO 8608 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-02-11T12:55:11.634-05:00  INFO 8608 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-11T12:55:11.635-05:00  INFO 8608 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4056 ms
+2024-02-11T12:55:12.079-05:00  INFO 8608 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-11T12:55:12.332-05:00  INFO 8608 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-02-11T12:55:12.441-05:00  INFO 8608 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-11T12:55:13.023-05:00  INFO 8608 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-11T12:55:13.087-05:00  INFO 8608 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-11T12:55:13.451-05:00  INFO 8608 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4878c97f
+2024-02-11T12:55:13.456-05:00  INFO 8608 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-11T12:55:13.531-05:00  WARN 8608 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-11T12:55:15.878-05:00  INFO 8608 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-11T12:55:15.970-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_clientes (idcliente bigserial not null, celular varchar(255), direccion varchar(255), estado integer not null, razonsocial varchar(255), rucdni varchar(255), primary key (idcliente))
+2024-02-11T12:55:15.996-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_menu (id bigserial not null, options_menu_id bigint, rol bigint, primary key (id))
+2024-02-11T12:55:16.004-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_number (idnumber bigserial not null, numeracion integer not null, prefij varchar(255), primary key (idnumber))
+2024-02-11T12:55:16.013-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_operaciones (operaciones bigserial not null, cantidad integer not null, estado integer not null, fechacpa date, preciocpa float(53), proceso varchar(255), tipo integer not null, producto bigint, primary key (operaciones))
+2024-02-11T12:55:16.023-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_options_menu (id bigserial not null, icon varchar(255), label varchar(255), path varchar(255), primary key (id))
+2024-02-11T12:55:16.036-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_productos (idprod bigserial not null, descripcion varchar(255), estado integer not null, precio float(53), stock_max integer not null, stock_min integer not null, proveedor bigint, tipo bigint, primary key (idprod))
+2024-02-11T12:55:16.046-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_proveedor (idproveedor bigserial not null, celular varchar(255), correo varchar(255), estado integer not null, razonsocial varchar(255), rucdni varchar(255), primary key (idproveedor))
+2024-02-11T12:55:16.058-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_roles (id bigserial not null, name varchar(255), primary key (id))
+2024-02-11T12:55:16.065-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_tipoproductos (idtipo bigserial not null, descripcion varchar(255), primary key (idtipo))
+2024-02-11T12:55:16.073-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_usuarios (idusuario bigserial not null, clave varchar(255), estado integer not null, nombre varchar(255), usuario varchar(255), rol_id bigint, primary key (idusuario))
+2024-02-11T12:55:16.085-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : create table tb_ventas (ventas varchar(255) not null, estado integer not null, fecha date, precio float(53), cliente bigint, primary key (ventas))
+2024-02-11T12:55:16.095-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : alter table if exists tb_menu add constraint FKow9vcw9dptn8s01xjwjjabnjk foreign key (options_menu_id) references tb_options_menu
+2024-02-11T12:55:16.104-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : alter table if exists tb_menu add constraint FKmt89tiv2305l75d10somy3lsb foreign key (rol) references tb_roles
+2024-02-11T12:55:16.109-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : alter table if exists tb_operaciones add constraint FKmsv5o3cf49c1d9ph9lpj12egr foreign key (producto) references tb_productos
+2024-02-11T12:55:16.114-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : alter table if exists tb_productos add constraint FKdafe6admph861n6x063gbdmn8 foreign key (proveedor) references tb_proveedor
+2024-02-11T12:55:16.118-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : alter table if exists tb_productos add constraint FKoq0g5wjahc70mp0jbamrlctkh foreign key (tipo) references tb_tipoproductos
+2024-02-11T12:55:16.124-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : alter table if exists tb_usuarios add constraint FKhxtmiglkpfvtrr9xc30l7b32 foreign key (rol_id) references tb_roles
+2024-02-11T12:55:16.129-05:00 DEBUG 8608 --- [restartedMain] org.hibernate.SQL                        : alter table if exists tb_ventas add constraint FKgusseh598bq9y0v5nytjo01a8 foreign key (cliente) references tb_clientes
+2024-02-11T12:55:16.136-05:00  INFO 8608 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-11T12:55:17.313-05:00  WARN 8608 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-11T12:55:17.352-05:00  WARN 8608 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 6eeac815-1d00-4b56-abf1-52c4dfa44201
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-02-11T12:55:17.981-05:00  INFO 8608 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6a554ab8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a4bbae2, org.springframework.security.web.context.SecurityContextHolderFilter@5d0687f9, org.springframework.security.web.header.HeaderWriterFilter@11c0f17b, org.springframework.web.filter.CorsFilter@4f75b7ff, org.springframework.security.web.authentication.logout.LogoutFilter@59ba25af, com.educibertec.sofiaproject.security.TokenAuthenticationFilter@27046eb3, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5282ff33, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@274daf3e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@40008d5e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6571238a, org.springframework.security.web.access.ExceptionTranslationFilter@6d3b2d11, org.springframework.security.web.access.intercept.AuthorizationFilter@114db88]
+2024-02-11T12:55:18.330-05:00  WARN 8608 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-11T12:55:18.545-05:00  WARN 8608 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2024-02-11T12:55:18.583-05:00  WARN 8608 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-02-11T12:55:18.588-05:00  INFO 8608 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-11T12:55:18.594-05:00  INFO 8608 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-11T12:55:18.602-05:00  INFO 8608 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-11T12:55:18.631-05:00  INFO 8608 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-02-11T12:55:18.679-05:00 ERROR 8608 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8082 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8082 or configure this application to listen on another port.
+
+2024-02-11T12:55:42.644-05:00  INFO 10852 --- [restartedMain] c.e.s.SofiaProjectApplication            : Starting SofiaProjectApplication using Java 17.0.10 with PID 10852 (D:\Documents\DocsWS\WS_Java\sofia-project\target\classes started by Hector in D:\Documents\DocsWS\WS_Java\sofia-project)
+2024-02-11T12:55:42.650-05:00  INFO 10852 --- [restartedMain] c.e.s.SofiaProjectApplication            : The following 1 profile is active: "dev"
+2024-02-11T12:55:42.755-05:00  INFO 10852 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-11T12:55:42.756-05:00  INFO 10852 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-11T12:55:44.303-05:00  INFO 10852 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-11T12:55:44.490-05:00  INFO 10852 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 171 ms. Found 8 JPA repository interfaces.
+2024-02-11T12:55:46.018-05:00  INFO 10852 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-02-11T12:55:46.054-05:00  INFO 10852 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-11T12:55:46.054-05:00  INFO 10852 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-02-11T12:55:46.161-05:00  INFO 10852 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-11T12:55:46.162-05:00  INFO 10852 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3404 ms
+2024-02-11T12:55:46.420-05:00  INFO 10852 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-11T12:55:46.548-05:00  INFO 10852 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-02-11T12:55:46.627-05:00  INFO 10852 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-11T12:55:47.025-05:00  INFO 10852 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-11T12:55:47.097-05:00  INFO 10852 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-11T12:55:47.362-05:00  INFO 10852 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6e4c8d97
+2024-02-11T12:55:47.365-05:00  INFO 10852 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-11T12:55:47.414-05:00  WARN 10852 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-11T12:55:49.067-05:00  INFO 10852 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-11T12:55:49.268-05:00  INFO 10852 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-11T12:55:50.272-05:00  WARN 10852 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-11T12:55:50.308-05:00  WARN 10852 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: bca9ac0d-a3d0-44c8-8a2c-992ceb95ec3b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-02-11T12:55:50.915-05:00  INFO 10852 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@108458ed, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@158fbedb, org.springframework.security.web.context.SecurityContextHolderFilter@7c18fd39, org.springframework.security.web.header.HeaderWriterFilter@1ab77454, org.springframework.web.filter.CorsFilter@1768ef24, org.springframework.security.web.authentication.logout.LogoutFilter@6f114f7b, com.educibertec.sofiaproject.security.TokenAuthenticationFilter@274a91ec, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@115276f8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5bbf5b0f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1151edd1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7fae863a, org.springframework.security.web.access.ExceptionTranslationFilter@42de84e6, org.springframework.security.web.access.intercept.AuthorizationFilter@4baa955a]
+2024-02-11T12:55:51.299-05:00  WARN 10852 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-11T12:55:51.486-05:00  INFO 10852 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-02-11T12:55:51.568-05:00  INFO 10852 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-02-11T12:55:51.588-05:00  INFO 10852 --- [restartedMain] c.e.s.SofiaProjectApplication            : Started SofiaProjectApplication in 9.934 seconds (process running for 11.184)
+2024-02-11T13:07:14.698-05:00  INFO 10852 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-11T13:07:14.708-05:00  INFO 10852 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-11T13:07:14.724-05:00  INFO 10852 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-11T20:47:09.012-05:00  INFO 31152 --- [restartedMain] c.e.s.SofiaProjectApplication            : Starting SofiaProjectApplication using Java 17.0.10 with PID 31152 (D:\Documents\DocsWS\WS_Java\sofia-project\target\classes started by Hector in D:\Documents\DocsWS\WS_Java\sofia-project)
+2024-02-11T20:47:09.019-05:00  INFO 31152 --- [restartedMain] c.e.s.SofiaProjectApplication            : The following 1 profile is active: "dev"
+2024-02-11T20:47:09.192-05:00  INFO 31152 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-11T20:47:09.192-05:00  INFO 31152 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-11T20:47:12.482-05:00  INFO 31152 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-11T20:47:12.760-05:00  INFO 31152 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 234 ms. Found 8 JPA repository interfaces.
+2024-02-11T20:47:14.957-05:00  INFO 31152 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-02-11T20:47:14.985-05:00  INFO 31152 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-11T20:47:14.986-05:00  INFO 31152 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-02-11T20:47:15.159-05:00  INFO 31152 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-11T20:47:15.160-05:00  INFO 31152 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5967 ms
+2024-02-11T20:47:15.532-05:00  INFO 31152 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-11T20:47:15.838-05:00  INFO 31152 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-02-11T20:47:16.128-05:00  INFO 31152 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-11T20:47:16.958-05:00  INFO 31152 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-11T20:47:17.051-05:00  INFO 31152 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-11T20:47:17.825-05:00  INFO 31152 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1612f291
+2024-02-11T20:47:17.830-05:00  INFO 31152 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-11T20:47:18.068-05:00  WARN 31152 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-11T20:47:21.605-05:00  INFO 31152 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-11T20:47:22.333-05:00  INFO 31152 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-11T20:47:24.569-05:00  WARN 31152 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-11T20:47:24.616-05:00  WARN 31152 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: f9e97f8a-a5dd-49da-9a0d-cbb7e2411307
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-02-11T20:47:25.805-05:00  INFO 31152 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@d44279b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4c75eb0d, org.springframework.security.web.context.SecurityContextHolderFilter@3bdc468c, org.springframework.security.web.header.HeaderWriterFilter@15ee5ef5, org.springframework.web.filter.CorsFilter@3ae19ea1, org.springframework.security.web.authentication.logout.LogoutFilter@7cdf3ca, com.educibertec.sofiaproject.security.TokenAuthenticationFilter@52a1a90, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6d136e2c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b628e9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@786aed8b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@69f69ab7, org.springframework.security.web.access.ExceptionTranslationFilter@6aa4acc2, org.springframework.security.web.access.intercept.AuthorizationFilter@48b2321e]
+2024-02-11T20:47:26.368-05:00  WARN 31152 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-11T20:47:26.675-05:00  INFO 31152 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-02-11T20:47:26.821-05:00  INFO 31152 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-02-11T20:47:26.860-05:00  INFO 31152 --- [restartedMain] c.e.s.SofiaProjectApplication            : Started SofiaProjectApplication in 19.304 seconds (process running for 21.366)
+2024-02-11T20:50:27.460-05:00  INFO 31152 --- [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-11T20:50:27.460-05:00  INFO 31152 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-02-11T20:50:27.464-05:00  INFO 31152 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-02-11T20:50:59.891-05:00  INFO 31152 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-11T20:50:59.899-05:00  INFO 31152 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-11T20:50:59.918-05:00  INFO 31152 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-11T20:51:07.259-05:00  INFO 33732 --- [restartedMain] c.e.s.SofiaProjectApplication            : Starting SofiaProjectApplication using Java 17.0.10 with PID 33732 (D:\Documents\DocsWS\WS_Java\sofia-project\target\classes started by Hector in D:\Documents\DocsWS\WS_Java\sofia-project)
+2024-02-11T20:51:07.266-05:00  INFO 33732 --- [restartedMain] c.e.s.SofiaProjectApplication            : The following 1 profile is active: "dev"
+2024-02-11T20:51:07.382-05:00  INFO 33732 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-11T20:51:07.383-05:00  INFO 33732 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-11T20:51:09.162-05:00  INFO 33732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-11T20:51:09.405-05:00  INFO 33732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 222 ms. Found 8 JPA repository interfaces.
+2024-02-11T20:51:11.609-05:00  INFO 33732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-02-11T20:51:11.639-05:00  INFO 33732 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-11T20:51:11.640-05:00  INFO 33732 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-02-11T20:51:11.812-05:00  INFO 33732 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-11T20:51:11.815-05:00  INFO 33732 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4430 ms
+2024-02-11T20:51:12.198-05:00  INFO 33732 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-11T20:51:12.439-05:00  INFO 33732 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-02-11T20:51:12.553-05:00  INFO 33732 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-11T20:51:13.180-05:00  INFO 33732 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-11T20:51:13.269-05:00  INFO 33732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-11T20:51:13.679-05:00  INFO 33732 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5009b7d4
+2024-02-11T20:51:13.683-05:00  INFO 33732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-11T20:51:13.762-05:00  WARN 33732 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-11T20:51:16.547-05:00  INFO 33732 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-11T20:51:16.888-05:00  INFO 33732 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-11T20:51:18.409-05:00  WARN 33732 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-11T20:51:18.455-05:00  WARN 33732 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: e1f48444-8098-48d7-a5a7-2873f004b247
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-02-11T20:51:19.142-05:00  INFO 33732 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7d3f87a5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39ed6eb6, org.springframework.security.web.context.SecurityContextHolderFilter@f2e7bea, org.springframework.security.web.header.HeaderWriterFilter@1eb13add, org.springframework.web.filter.CorsFilter@199ce2cf, org.springframework.security.web.authentication.logout.LogoutFilter@205f547c, com.educibertec.sofiaproject.security.TokenAuthenticationFilter@764efb54, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@d85ba8e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4eae901b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@795504df, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2e107550, org.springframework.security.web.access.ExceptionTranslationFilter@68c2c1fd, org.springframework.security.web.access.intercept.AuthorizationFilter@569b1e1c]
+2024-02-11T20:51:19.520-05:00  WARN 33732 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-11T20:51:19.766-05:00  INFO 33732 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-02-11T20:51:19.846-05:00  INFO 33732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-02-11T20:51:19.869-05:00  INFO 33732 --- [restartedMain] c.e.s.SofiaProjectApplication            : Started SofiaProjectApplication in 13.697 seconds (process running for 15.045)
+2024-02-11T20:52:58.433-05:00  INFO 33732 --- [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-11T20:52:58.434-05:00  INFO 33732 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-02-11T20:52:58.438-05:00  INFO 33732 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2024-02-11T21:10:46.541-05:00  INFO 33732 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-11T21:10:46.548-05:00  INFO 33732 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-11T21:10:46.565-05:00  INFO 33732 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
