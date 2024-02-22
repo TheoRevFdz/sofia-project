@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
@@ -41,14 +43,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                         authRequest.requestMatchers("/auth/**",
                                         "/api/fakerData/generate/**",
-                                        "/crud_Productos/**")
+                                        "/crud_Productos/**"
+                                )
                                 .permitAll()
-                                .requestMatchers("/", "/index")
+                                .requestMatchers("/resources/**", "/static/**")
                                 .permitAll()
                                 .anyRequest().authenticated()
                 )
         //        .formLogin(Customizer.withDefaults())
         ;
+        http.securityMatcher(new OrRequestMatcher(new AntPathRequestMatcher("/static/**")));
         http.httpBasic(httpBasic -> httpBasic.authenticationEntryPoint(new RestAuthenticationEntryPoint()));
         http.addFilterBefore(createTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();

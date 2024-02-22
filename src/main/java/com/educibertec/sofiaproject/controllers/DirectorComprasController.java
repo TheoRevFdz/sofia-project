@@ -100,7 +100,7 @@ public class DirectorComprasController {
     @PostMapping("comprasProductos/guardar")
     public String guardarProducto() {
         LocalDate date = LocalDate.now();
-        List<CapsulaOperacion> paquete = new ArrayList<CapsulaOperacion>();
+        List<CapsulaOperacion> paquete = new ArrayList<>();
         CapsulaOperacion ope;
         for (PastillaProducto cap : pastilla) {
             CapsulaProducto p = SProducto.buscarProducto(cap.getIdProducto());
@@ -116,7 +116,7 @@ public class DirectorComprasController {
                     .build();
             paquete.add(ope);
         }
-        pastilla = new ArrayList<PastillaProducto>();
+        pastilla = new ArrayList<>();
         SOperacion.crearMultiplesOperaciones(paquete);
         return "redirect:/listar_Ctrl_Reposicion";
     }
@@ -126,7 +126,7 @@ public class DirectorComprasController {
         response.addHeader("Content-disposition", "inline: filename" + "vendedor.pdf");
         response.setContentType("application/pdf");
         ServletOutputStream outputStream = response.getOutputStream();
-        JasperExportManager.exportReportToPdfStream(SProducto.exportReport("classpath:report_reponer.jrxml"), outputStream);
+        JasperExportManager.exportReportToPdfStream(SProducto.exportReport("classpath:reports/report_reponer.jrxml"), outputStream);
         outputStream.flush();
         outputStream.close();
     }
