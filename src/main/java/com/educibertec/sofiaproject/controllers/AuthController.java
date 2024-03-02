@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/auth")
-public class DirectorLoginController {
+public class AuthController {
     @Autowired
     private IUsuariosService SUsuario;
     @Autowired
@@ -28,14 +28,14 @@ public class DirectorLoginController {
     private AuthUtil authUtil;
 
     @GetMapping
-    public ModelAndView autentificarUsers() {
+    public ModelAndView auth() {
         ModelAndView mav = new ModelAndView("autentificacion");
         mav.addObject("pqteusers", new CapsulaUsuario());
         return mav;
     }
 
     @PostMapping
-    public String ejecutarAutentificacion(@ModelAttribute(name = "pqteusers") CapsulaUsuario obj, BindingResult result, RedirectAttributes attribute) {
+    public String login(@ModelAttribute(name = "pqteusers") CapsulaUsuario obj, BindingResult result, RedirectAttributes attribute) {
         final String response = userService.signIn(obj)
                 .map(u -> {
                     if (u.getEstado() == 1) {
