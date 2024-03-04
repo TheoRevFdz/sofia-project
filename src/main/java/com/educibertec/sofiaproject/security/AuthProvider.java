@@ -15,10 +15,10 @@ public class AuthProvider {
     private String keySecret;
 
     public String createToken(CapsulaUsuario authUser) {
-        Map<String, Object> claims = Jwts.claims().setSubject(authUser.getUsuario());
+        Map<String, Object> claims = Jwts.claims().setSubject(authUser.getUsername());
         claims.put("id", authUser.getIdusuario());
         claims.put("fullName", authUser.getNombre());
-        claims.put("username", authUser.getUsuario());
+        claims.put("username", authUser.getUsername());
         //claims.put("authorities", authUser.getRol());
         Date now = new Date();
         Date exp = new Date(now.getTime() + (1000 * 60 * 60 * 24 * 7));

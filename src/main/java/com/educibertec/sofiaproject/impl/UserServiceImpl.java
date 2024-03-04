@@ -38,18 +38,18 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Optional<CapsulaUsuario> findByUsername(String username) {
-        return repository.findByUsuario(username);
+        return repository.findByUsername(username);
     }
 
     @Override
     public Optional<CapsulaUsuario> signIn(CapsulaUsuario user) {
-        return Optional.ofNullable(repository.findByUsuario(user.getUsuario())
+        return Optional.ofNullable(repository.findByUsername(user.getUsername())
                 .map(u -> {
-                    boolean isValid = passwordEncoder.matches(user.getClave(), u.getClave());
+                    boolean isValid = passwordEncoder.matches(user.getPassword(), u.getPassword());
                     if (isValid) {
                         final String token = authProvider.createToken(u);
                         log.info(String.format("Token: %s", token));
-                        u.setClave("");
+                        u.setPassword("");
                         u.setToken(token);
                         return u;
                     }

@@ -9,6 +9,9 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -44,26 +47,35 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authRequest ->
                         authRequest.requestMatchers("/auth/**",
-                                        "/api/fakerData/generate/**"
+                                        "/api/fakerData/generate/**",
+                                        "/api/auth/createUser"
                                         //"/crud_Productos/**"
                                 )
                                 .permitAll()
                                 .anyRequest()
-                                .authenticated()
-                )
-        //.formLogin(Customizer.withDefaults())
-          //      .successHandler(successHandler())
-            //    .permitAll()
+                                .authenticated())
         ;
 
-        http.formLogin(form->form.loginPage("/auth")
-                .successHandler(successHandler())
-                .permitAll()
+//        http.formLogin(form->form.loginPage("/auth")
+//                .successHandler(successHandler())
+//                .permitAll()
+//        );
+        http.formLogin(formLogin -> formLogin.successHandler(successHandler())
+                .permitAll());
+        http.sessionManagement(session -> {
+                    session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                            .invalidSessionUrl("/login")
+                            .maximumSessions(1)
+                            .expiredUrl("/login")
+                            .sessionRegistry(sessionRegistry());
+                    session.sessionFixation().migrateSession();
+                }
         );
 
         //http.securityMatcher(new OrRequestMatcher(new AntPathRequestMatcher("/static/**")));
         //http.httpBasic(httpBasic -> httpBasic.authenticationEntryPoint(new RestAuthenticationEntryPoint()));
-        http.addFilterBefore(createTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+//        http.addFilterBefore(createTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
@@ -72,7 +84,12 @@ public class SecurityConfig {
         return new TokenAuthenticationFilter();
     }
 
-    public AuthenticationSuccessHandler successHandler(){
-        return (((request, response, authentication) -> response.sendRedirect("/index")));
+    public AuthenticationSuccessHandler successHandler() {
+        return (((request, response, authentication) -> response.sendRedirect("/crud_Productos")));
+    }
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
     }
 }

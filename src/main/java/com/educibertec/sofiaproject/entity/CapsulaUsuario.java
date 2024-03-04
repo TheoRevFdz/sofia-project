@@ -21,8 +21,8 @@ public class CapsulaUsuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idusuario;
     private String nombre;
-    private String usuario;
-    private String clave;
+    private String username;
+    private String password;
     private int estado;
     @Transient
     private String token;
