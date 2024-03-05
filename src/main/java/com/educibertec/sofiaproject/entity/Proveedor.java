@@ -1,30 +1,28 @@
 package com.educibertec.sofiaproject.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 @Builder
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 @Entity
-@Table(name="tb_clientes")
-public class CapsulaCliente implements Serializable {
+@Table(name="tb_proveedor")
+public class Proveedor implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idcliente;
+	private Long idproveedor;
 	private String rucdni;
-	@NotEmpty
 	private String razonsocial;
-	private String direccion;
 	private String celular;
+	private String correo;
 	private int estado;
 }

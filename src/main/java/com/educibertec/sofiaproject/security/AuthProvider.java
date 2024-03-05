@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.security;
 
-import com.educibertec.sofiaproject.entity.CapsulaUsuario;
+import com.educibertec.sofiaproject.entity.Users;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +14,7 @@ public class AuthProvider {
     @Value("${config.security.keySecret}")
     private String keySecret;
 
-    public String createToken(CapsulaUsuario authUser) {
+    public String createToken(Users authUser) {
         Map<String, Object> claims = Jwts.claims().setSubject(authUser.getUsername());
         claims.put("id", authUser.getIdusuario());
         claims.put("fullName", authUser.getNombre());

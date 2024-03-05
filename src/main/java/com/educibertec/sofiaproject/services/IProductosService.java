@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.services;
 
-import com.educibertec.sofiaproject.entity.CapsulaProducto;
+import com.educibertec.sofiaproject.entity.Product;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
 
@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface IProductosService {
 
-	public List<CapsulaProducto> listar();
-	public CapsulaProducto buscarProducto(Long codigo);
-	public void eliminarProducto(CapsulaProducto obj);
-	public void modificarProducto(CapsulaProducto obj);
-	public void crearProducto(CapsulaProducto obj);
+	public List<Product> listar();
+	public Product buscarProducto(Long codigo);
+	public void eliminarProducto(Product obj);
+	public void modificarProducto(Product obj);
+	public void crearProducto(Product obj);
 	public JasperPrint exportReport(String report)throws FileNotFoundException, JRException;
 }

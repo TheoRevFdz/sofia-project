@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.impl;
 
-import com.educibertec.sofiaproject.entity.CapsulaUsuario;
+import com.educibertec.sofiaproject.entity.Users;
 import com.educibertec.sofiaproject.exceptions.NoDataFoundException;
 import com.educibertec.sofiaproject.exceptions.ValidateServiceException;
 import com.educibertec.sofiaproject.repositories.IUsuariosRepository;
@@ -26,8 +26,8 @@ public class UsuariosServiceImpl implements IUsuariosService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public CapsulaUsuario validarLogin(String username, String password) {
-        CapsulaUsuario user = repository.findByUsername(username)
+    public Users validarLogin(String username, String password) {
+        Users user = repository.findByUsername(username)
                 .orElseThrow(() -> new ValidateServiceException("Usuario o password incorrectos"));
         if (passwordEncoder.matches(password, user.getPassword())) {
             final String token = generateToken(user);
@@ -37,7 +37,7 @@ public class UsuariosServiceImpl implements IUsuariosService {
         throw new ValidateServiceException("Usuario o password incorrectos");
     }
 
-    public String generateToken(CapsulaUsuario user) {
+    public String generateToken(Users user) {
         Date now = new Date();
         Date expireDate = new Date(now.getTime() + (1000 * 60 * 60 * 24 * 7));
 
@@ -50,9 +50,9 @@ public class UsuariosServiceImpl implements IUsuariosService {
     }
 
     @Override
-    public CapsulaUsuario signUp(CapsulaUsuario user) throws Exception {
+    public Users signUp(Users user) throws Exception {
         try {
-            CapsulaUsuario userResult = repository.findByUsername(user.getUsername()).orElse(null);
+            Users userResult = repository.findByUsername(user.getUsername()).orElse(null);
             if (userResult != null && user.getIdusuario() == null) {
                 throw new ValidateServiceException("El nombre de usuario ya existe");
             }

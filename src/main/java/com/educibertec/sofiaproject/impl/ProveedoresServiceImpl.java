@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.impl;
 
-import com.educibertec.sofiaproject.entity.CapsulaProveedor;
+import com.educibertec.sofiaproject.entity.Proveedor;
 import com.educibertec.sofiaproject.repositories.IProveedoresRepository;
 import com.educibertec.sofiaproject.services.IProveedoresService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +14,25 @@ public class ProveedoresServiceImpl implements IProveedoresService {
     IProveedoresRepository rp;
 
     @Override
-    public List<CapsulaProveedor> listar() {
+    public List<Proveedor> listar() {
         return rp.findByEstado(1);
     }
 
     @Override
-    public CapsulaProveedor buscarProveedor(Long codigo) {
+    public Proveedor buscarProveedor(Long codigo) {
         return rp.findById(codigo).orElse(null);
     }
 
     @Override
-    public void eliminarProveedor(CapsulaProveedor obj) {
-        CapsulaProveedor prov = rp.findById(obj.getIdproveedor()).orElse(null);
+    public void eliminarProveedor(Proveedor obj) {
+        Proveedor prov = rp.findById(obj.getIdproveedor()).orElse(null);
         prov.setEstado(0);
         rp.save(prov);
     }
 
     @Override
-    public void modificarProveedor(CapsulaProveedor obj) {
-        CapsulaProveedor prov = rp.findById(obj.getIdproveedor()).orElse(null);
+    public void modificarProveedor(Proveedor obj) {
+        Proveedor prov = rp.findById(obj.getIdproveedor()).orElse(null);
         prov.setIdproveedor(obj.getIdproveedor());
         prov.setCelular(obj.getCelular());
         prov.setCorreo(obj.getCorreo());
@@ -43,7 +43,7 @@ public class ProveedoresServiceImpl implements IProveedoresService {
     }
 
     @Override
-    public void crearProveedor(CapsulaProveedor obj) {
+    public void crearProveedor(Proveedor obj) {
         rp.save(obj);
     }
 }

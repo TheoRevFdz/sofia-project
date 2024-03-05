@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.impl;
 
-import com.educibertec.sofiaproject.entity.CapsulaTipoProducto;
+import com.educibertec.sofiaproject.entity.TipoProducto;
 import com.educibertec.sofiaproject.repositories.ITipoProductosRepository;
 import com.educibertec.sofiaproject.services.ITipoProductosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class TipoProductosServiceImpl implements ITipoProductosService {
 	ITipoProductosRepository rt;
 	
 	@Override
-	public List<CapsulaTipoProducto> listar() {
+	public List<TipoProducto> listar() {
 		return rt.findAll();
 	}
 

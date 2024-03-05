@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.controllers;
 
-import com.educibertec.sofiaproject.entity.CapsulaUsuario;
+import com.educibertec.sofiaproject.entity.Users;
 import com.educibertec.sofiaproject.services.IUserService;
 import com.educibertec.sofiaproject.services.IUsuariosService;
 import com.educibertec.sofiaproject.util.AuthUtil;
@@ -29,7 +29,7 @@ public class UserController {
     private IUsuariosService usuariosService;
 
     @PutMapping
-    public ResponseEntity<MessageUtil> update(@RequestBody CapsulaUsuario user) {
+    public ResponseEntity<MessageUtil> update(@RequestBody Users user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return authUtil.responseEntityMono(service.update(user),
                 "Usuario actualizado correctamente",
@@ -37,22 +37,22 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<CapsulaUsuario> findByUsername(@RequestParam(name = "username") String username) {
+    public ResponseEntity<Users> findByUsername(@RequestParam(name = "username") String username) {
         return service.findByUsername(username)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<CapsulaUsuario>> findAll() {
-        List<CapsulaUsuario> resp = service.findAll().stream()
+    public ResponseEntity<List<Users>> findAll() {
+        List<Users> resp = service.findAll().stream()
                 .peek(u -> u.setPassword("")).collect(Collectors.toList());
         return ResponseEntity.ok(resp);
     }
 
     @PostMapping("/createUser")
-    public ResponseEntity<Object> createUser(@RequestBody CapsulaUsuario usuario) {
-        Optional<CapsulaUsuario> respUser = null;
+    public ResponseEntity<Object> createUser(@RequestBody Users usuario) {
+        Optional<Users> respUser = null;
         try {
             respUser = Optional.of(usuariosService.signUp(usuario));
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class UserController {
                 .build();
         if (respUser.isPresent()) {
             resp.setMessage("Usuario creado correctamente.");
-            CapsulaUsuario user = respUser.get();
+            Users user = respUser.get();
             user.setPassword("");
             resp.setResult(user);
             resp.setStatus(HttpStatus.CREATED.value());

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @Table(name="tb_ventas")
-public class CapsulaVenta implements Serializable {
+public class Sale implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +22,7 @@ public class CapsulaVenta implements Serializable {
 	private String ventas;
 	@ManyToOne
 	@JoinColumn(name = "cliente")
-	private CapsulaCliente cliente;
+	private Customer cliente;
 	private Double precio;
 	private LocalDate fecha;
 	private int estado;

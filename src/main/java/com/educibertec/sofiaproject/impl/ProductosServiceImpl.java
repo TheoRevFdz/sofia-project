@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.impl;
 
-import com.educibertec.sofiaproject.entity.CapsulaProducto;
+import com.educibertec.sofiaproject.entity.Product;
 import com.educibertec.sofiaproject.repositories.IProductosRepository;
 import com.educibertec.sofiaproject.services.IProductosService;
 import net.sf.jasperreports.engine.*;
@@ -21,25 +21,25 @@ public class ProductosServiceImpl implements IProductosService {
 	IProductosRepository repository;
 	
 	@Override
-	public List<CapsulaProducto> listar() {
+	public List<Product> listar() {
 		return repository.findByEstado(1);
 	}
 
 	@Override
-	public CapsulaProducto buscarProducto(Long codigo) {
+	public Product buscarProducto(Long codigo) {
 		return repository.findById(codigo).orElse(null);
 	}
 
 	@Override
-	public void eliminarProducto(CapsulaProducto obj) {
-		CapsulaProducto cap = repository.findById(obj.getIdprod()).orElse(null);
+	public void eliminarProducto(Product obj) {
+		Product cap = repository.findById(obj.getIdprod()).orElse(null);
 		cap.setEstado(0);
 		repository.save(cap);
 	}
 
 	@Override
-	public void modificarProducto(CapsulaProducto obj) {
-		CapsulaProducto cap = repository.findById(obj.getIdprod()).orElse(null);
+	public void modificarProducto(Product obj) {
+		Product cap = repository.findById(obj.getIdprod()).orElse(null);
 		cap.setDescripcion(obj.getDescripcion());
 		cap.setPrecio(obj.getPrecio());
 		cap.setProveedor(obj.getProveedor());
@@ -50,13 +50,13 @@ public class ProductosServiceImpl implements IProductosService {
 	}
 
 	@Override
-	public void crearProducto(CapsulaProducto obj) {
+	public void crearProducto(Product obj) {
 		repository.save(obj);
 	}
 
 	@Override
 	public JasperPrint exportReport(String repor) throws FileNotFoundException, JRException {
-		List<CapsulaProducto>listadoP = repository.findByEstado(1);
+		List<Product>listadoP = repository.findByEstado(1);
 		File archivo = ResourceUtils.getFile(repor);
 		JasperReport report = JasperCompileManager.compileReport(archivo.getAbsolutePath());
 		JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(listadoP);

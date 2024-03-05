@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.impl;
 
-import com.educibertec.sofiaproject.entity.CapsulaVenta;
+import com.educibertec.sofiaproject.entity.Sale;
 import com.educibertec.sofiaproject.repositories.IVentasRepository;
 import com.educibertec.sofiaproject.services.IVentasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ public class VentasServiceServiceImpl implements IVentasService {
 	IVentasRepository rv;
 	
 	@Override
-	public void crearVentas(CapsulaVenta obj) {
+	public void crearVentas(Sale obj) {
 		rv.save(obj);
 	}
 

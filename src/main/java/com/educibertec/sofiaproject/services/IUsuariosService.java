@@ -1,9 +1,9 @@
 package com.educibertec.sofiaproject.services;
 
-import com.educibertec.sofiaproject.entity.CapsulaUsuario;
+import com.educibertec.sofiaproject.entity.Users;
 
 public interface IUsuariosService {
-	CapsulaUsuario validarLogin (String username, String password);
+	Users validarLogin (String username, String password);
 
-	CapsulaUsuario signUp(CapsulaUsuario user) throws Exception;
+	Users signUp(Users user) throws Exception;
 }

@@ -1,20 +1,20 @@
 package com.educibertec.sofiaproject.services;
 
-import com.educibertec.sofiaproject.entity.CapsulaUsuario;
+import com.educibertec.sofiaproject.entity.Users;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
-    Optional<CapsulaUsuario> create(CapsulaUsuario user);
+    Optional<Users> create(Users user);
 
-    Optional<CapsulaUsuario> update(CapsulaUsuario user);
+    Optional<Users> update(Users user);
 
-    Optional<CapsulaUsuario> findByUsername(String username);
+    Optional<Users> findByUsername(String username);
 
-    Optional<CapsulaUsuario> signIn(CapsulaUsuario user);
+    Optional<Users> signIn(Users user);
 
-    CapsulaUsuario findUserById(Long id);
+    Users findUserById(Long id);
 
-    List<CapsulaUsuario> findAll();
+    List<Users> findAll();
 }

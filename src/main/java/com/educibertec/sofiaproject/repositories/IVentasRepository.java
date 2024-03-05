@@ -1,9 +1,9 @@
 package com.educibertec.sofiaproject.repositories;
 
-import com.educibertec.sofiaproject.entity.CapsulaVenta;
+import com.educibertec.sofiaproject.entity.Sale;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository
-public interface IVentasRepository extends JpaRepository<CapsulaVenta, String>{
+public interface IVentasRepository extends JpaRepository<Sale, String>{
 
 }

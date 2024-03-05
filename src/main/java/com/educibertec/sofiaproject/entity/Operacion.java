@@ -5,24 +5,29 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
-@Table(name="tb_proveedor")
-public class CapsulaProveedor implements Serializable {
+@Table(name = "tb_operaciones")
+public class Operacion implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idproveedor;
-	private String rucdni;
-	private String razonsocial;
-	private String celular;
-	private String correo;
+	private Long operaciones;
+	private String proceso;
+	private int tipo;
+	@ManyToOne
+	@JoinColumn(name = "producto")
+	private Product producto;
+	private int cantidad;
+	private Double preciocpa;
+	private LocalDate fechacpa;
 	private int estado;
 }

@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.impl;
 
-import com.educibertec.sofiaproject.entity.CapsulaUsuario;
+import com.educibertec.sofiaproject.entity.Users;
 import com.educibertec.sofiaproject.repositories.IUsuariosRepository;
 import com.educibertec.sofiaproject.security.AuthProvider;
 import com.educibertec.sofiaproject.services.IUserService;
@@ -23,13 +23,13 @@ public class UserServiceImpl implements IUserService {
     private AuthProvider authProvider;
 
     @Override
-    public Optional<CapsulaUsuario> create(CapsulaUsuario user) {
+    public Optional<Users> create(Users user) {
         return Optional.of(repository.save(user));
     }
 
     @Override
-    public Optional<CapsulaUsuario> update(CapsulaUsuario user) {
-        Optional<CapsulaUsuario> u = repository.findById(user.getIdusuario());
+    public Optional<Users> update(Users user) {
+        Optional<Users> u = repository.findById(user.getIdusuario());
         if (u.isPresent()) {
             return Optional.of(repository.save(user));
         }
@@ -37,12 +37,12 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Optional<CapsulaUsuario> findByUsername(String username) {
+    public Optional<Users> findByUsername(String username) {
         return repository.findByUsername(username);
     }
 
     @Override
-    public Optional<CapsulaUsuario> signIn(CapsulaUsuario user) {
+    public Optional<Users> signIn(Users user) {
         return Optional.ofNullable(repository.findByUsername(user.getUsername())
                 .map(u -> {
                     boolean isValid = passwordEncoder.matches(user.getPassword(), u.getPassword());
@@ -58,13 +58,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public CapsulaUsuario findUserById(Long id) {
+    public Users findUserById(Long id) {
         return repository.findById(id)
                 .orElseGet(() -> null);
     }
 
     @Override
-    public List<CapsulaUsuario> findAll() {
+    public List<Users> findAll() {
         return repository.findAll();
     }
 }

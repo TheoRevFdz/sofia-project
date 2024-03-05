@@ -81,11 +81,11 @@ public class FakerDataServiceImpl implements IFakerDataService {
     private boolean generateTipoProductos() {
         long countTipoProd = tipoProdRepository.count();
         if (countTipoProd == 0) {
-            List<CapsulaTipoProducto> listTipoProd = new ArrayList<>();
+            List<TipoProducto> listTipoProd = new ArrayList<>();
             int cont = 0;
             while (cont < 10) {
                 Faker faker = new Faker();
-                CapsulaTipoProducto tipoProd = CapsulaTipoProducto.builder()
+                TipoProducto tipoProd = TipoProducto.builder()
                         .descripcion(faker.name().name())
                         .build();
                 listTipoProd.add(tipoProd);
@@ -101,22 +101,22 @@ public class FakerDataServiceImpl implements IFakerDataService {
     private boolean generateProveedor() {
         long contProv = provRepository.count();
         if (contProv == 0) {
-            List<CapsulaProveedor> listProv = new ArrayList<>();
-            CapsulaProveedor prov1 = CapsulaProveedor.builder()
+            List<Proveedor> listProv = new ArrayList<>();
+            Proveedor prov1 = Proveedor.builder()
                     .rucdni("20070321659")
                     .razonsocial("COMERCIAL LA GOLOCINA E.I.R.L.")
                     .celular("998521445")
                     .correo("ventas@lagolocina.com")
                     .estado(1)
                     .build();
-            CapsulaProveedor prov2 = CapsulaProveedor.builder()
+            Proveedor prov2 = Proveedor.builder()
                     .rucdni("25544458225")
                     .razonsocial("CORDIAL CORPORACION DISTRIBUIDORA DE ALIMENTOS S.R.L.")
                     .celular("988589452")
                     .correo("ventas@cocodist.com.pe")
                     .estado(1)
                     .build();
-            CapsulaProveedor prov3 = CapsulaProveedor.builder()
+            Proveedor prov3 = Proveedor.builder()
                     .rucdni("43322581")
                     .razonsocial("JULIO MARIO PEREZ MIRANDA")
                     .celular("999251255")
@@ -136,7 +136,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
     private boolean generateProductos() {
         long contProd = productosRepository.count();
         if (contProd == 0) {
-            CapsulaProducto prod1 = CapsulaProducto.builder()
+            Product prod1 = Product.builder()
                     .descripcion("COCA COLA 600 ML X UND")
                     .stock_max(50)
                     .stock_min(6)
@@ -145,7 +145,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(2.5)
                     .estado(1)
                     .build();
-            CapsulaProducto prod2 = CapsulaProducto.builder()
+            Product prod2 = Product.builder()
                     .descripcion("INKA KOLA 600 ML X UND")
                     .stock_max(50)
                     .stock_min(6)
@@ -154,7 +154,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(2.5)
                     .estado(1)
                     .build();
-            CapsulaProducto prod3 = CapsulaProducto.builder()
+            Product prod3 = Product.builder()
                     .descripcion("FANTA 500 ML X UND")
                     .stock_max(50)
                     .stock_min(6)
@@ -163,7 +163,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(2.0)
                     .estado(1)
                     .build();
-            CapsulaProducto prod4 = CapsulaProducto.builder()
+            Product prod4 = Product.builder()
                     .descripcion("SPRITE 500 ML X UND")
                     .stock_max(50)
                     .stock_min(6)
@@ -172,7 +172,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(2.5)
                     .estado(1)
                     .build();
-            CapsulaProducto prod5 = CapsulaProducto.builder()
+            Product prod5 = Product.builder()
                     .descripcion("FILETE DE ATUN GLORIA X UND")
                     .stock_max(24)
                     .stock_min(6)
@@ -181,7 +181,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(4.5)
                     .estado(1)
                     .build();
-            CapsulaProducto prod6 = CapsulaProducto.builder()
+            Product prod6 = Product.builder()
                     .descripcion("FILETE DE ATUN SAN FERNANDO X UND")
                     .stock_max(24)
                     .stock_min(6)
@@ -190,7 +190,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(5.0)
                     .estado(1)
                     .build();
-            CapsulaProducto prod7 = CapsulaProducto.builder()
+            Product prod7 = Product.builder()
                     .descripcion("ATUN EN TROZOS ALAMAR X UND")
                     .stock_max(24)
                     .stock_min(6)
@@ -199,7 +199,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(4.8)
                     .estado(1)
                     .build();
-            CapsulaProducto prod8 = CapsulaProducto.builder()
+            Product prod8 = Product.builder()
                     .descripcion("ATUN EN TROZOS PRIMOR X UND")
                     .stock_max(24)
                     .stock_min(6)
@@ -208,7 +208,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(4.7)
                     .estado(1)
                     .build();
-            CapsulaProducto prod9 = CapsulaProducto.builder()
+            Product prod9 = Product.builder()
                     .descripcion("ARROZ LA CACERITA AÑEJO X KILO")
                     .stock_max(50)
                     .stock_min(20)
@@ -217,7 +217,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(4.2)
                     .estado(1)
                     .build();
-            CapsulaProducto prod10 = CapsulaProducto.builder()
+            Product prod10 = Product.builder()
                     .descripcion("ARROZ COSTEÑO GRANEADITO X KILO")
                     .stock_max(50)
                     .stock_min(20)
@@ -226,7 +226,7 @@ public class FakerDataServiceImpl implements IFakerDataService {
                     .precio(4.5)
                     .estado(1)
                     .build();
-            List<CapsulaProducto> listProd = new ArrayList<>();
+            List<Product> listProd = new ArrayList<>();
             listProd.add(prod1);
             listProd.add(prod2);
             listProd.add(prod3);
@@ -247,21 +247,21 @@ public class FakerDataServiceImpl implements IFakerDataService {
     private boolean generateClients() {
         long contClients = clientesRepository.count();
         if (contClients == 0) {
-            CapsulaCliente cli1 = CapsulaCliente.builder()
+            Customer cli1 = Customer.builder()
                     .celular("990584475")
                     .direccion("LAS ALMENDRAS 136 - SURCO")
                     .razonsocial("JUAN JOSE MEDINA CACERES")
                     .rucdni("45525645")
                     .estado(1)
                     .build();
-            CapsulaCliente cli2 = CapsulaCliente.builder()
+            Customer cli2 = Customer.builder()
                     .celular("990682222")
                     .direccion("VILLA ATAÑO 342 INT A - COMAS")
                     .razonsocial("BODEGA LUIS FELIPE")
                     .rucdni("20054212559")
                     .estado(1)
                     .build();
-            List<CapsulaCliente> listClient = new ArrayList<>();
+            List<Customer> listClient = new ArrayList<>();
             listClient.add(cli1);
             listClient.add(cli2);
             clientesRepository.saveAll(listClient);

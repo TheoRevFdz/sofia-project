@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "tb_productos")
-public class CapsulaProducto implements Serializable {
+public class Product implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class CapsulaProducto implements Serializable {
 	private Long idprod;
 	@ManyToOne
 	@JoinColumn(name = "tipo")
-	private CapsulaTipoProducto tipo;
+	private TipoProducto tipo;
 	
 	private String descripcion;
 	
@@ -34,11 +34,11 @@ public class CapsulaProducto implements Serializable {
 	private int stock_max;
 	@ManyToOne
 	@JoinColumn(name = "proveedor")
-	private CapsulaProveedor proveedor;
+	private Proveedor proveedor;
 	private int estado;
 	
 	@OneToMany(mappedBy = "producto")
-	List<CapsulaOperacion>lstCantidad;
+	List<Operacion>lstCantidad;
 
 	
 	public int getStock() {

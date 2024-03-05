@@ -1,6 +1,6 @@
 package com.educibertec.sofiaproject.util;
 
-import com.educibertec.sofiaproject.entity.CapsulaUsuario;
+import com.educibertec.sofiaproject.entity.Users;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Component
 public class AuthUtil {
-    public ResponseEntity<MessageUtil> responseEntityMono(Optional<CapsulaUsuario> findFunc, String msgSuccess, String msgFail) {
+    public ResponseEntity<MessageUtil> responseEntityMono(Optional<Users> findFunc, String msgSuccess, String msgFail) {
         return findFunc.map(u -> ResponseEntity.ok()
                         .body(MessageUtil.builder()
                                 .message(msgSuccess)

@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = "tb_tipoproductos")
-public class CapsulaTipoProducto implements Serializable {
+public class TipoProducto implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 

@@ -39,7 +39,7 @@ public class DirectorVentasController {
         mav.addObject("producto", PastillaProducto.builder().build());
         mav.addObject("clientelist", SCliente.listar());
         mav.addObject("capsul", pastilla);
-        mav.addObject("clientCapsula", new CapsulaCliente());
+        mav.addObject("clientCapsula", new Customer());
         return mav;
     }
 
@@ -62,12 +62,12 @@ public class DirectorVentasController {
     }
 
     @PostMapping("ventaProductos/guardar")
-    public String guardarProducto(@ModelAttribute(name = "orden") CapsulaCliente obj) {
+    public String guardarProducto(@ModelAttribute(name = "orden") Customer obj) {
         System.out.println(obj.getIdcliente());
         LocalDate date = LocalDate.now();
         Double costosum = pastilla.stream().mapToDouble(o -> o.getCosto()).sum();
         String codigoVTA = SNumber.buscarNumeracion(Long.valueOf(1)).codigoconPrefijo();
-        CapsulaVenta v = CapsulaVenta.builder()
+        Sale v = Sale.builder()
                 .ventas(codigoVTA)
                 .cliente(SCliente.buscarCliente(obj.getIdcliente()))
                 .precio(costosum)
@@ -75,13 +75,13 @@ public class DirectorVentasController {
                 .estado(1)
                 .build();
 
-        List<CapsulaOperacion> paquete = new ArrayList<CapsulaOperacion>();
-        CapsulaOperacion ope;
+        List<Operacion> paquete = new ArrayList<Operacion>();
+        Operacion ope;
         for (PastillaProducto cap : pastilla) {
-            CapsulaProducto p = SProducto.buscarProducto(cap.getIdProducto());
+            Product p = SProducto.buscarProducto(cap.getIdProducto());
 
             int cant = cap.getCantidad();
-            ope = CapsulaOperacion.builder()
+            ope = Operacion.builder()
                     .proceso(codigoVTA)
                     .tipo(2)
                     .producto(p)

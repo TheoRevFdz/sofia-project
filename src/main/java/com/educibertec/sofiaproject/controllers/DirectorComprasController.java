@@ -1,7 +1,7 @@
 package com.educibertec.sofiaproject.controllers;
 
-import com.educibertec.sofiaproject.entity.CapsulaOperacion;
-import com.educibertec.sofiaproject.entity.CapsulaProducto;
+import com.educibertec.sofiaproject.entity.Operacion;
+import com.educibertec.sofiaproject.entity.Product;
 import com.educibertec.sofiaproject.entity.PastillaProducto;
 import com.educibertec.sofiaproject.services.INumbersService;
 import com.educibertec.sofiaproject.services.IOperacionesService;
@@ -40,7 +40,7 @@ public class DirectorComprasController {
     @GetMapping("listar_Ctrl_Reposicion")
     public ModelAndView listarCtrlReposicion() {
         ModelAndView mav = new ModelAndView("listarCtrlReposiciones");
-        List<CapsulaProducto> paquete = SProducto.listar();
+        List<Product> paquete = SProducto.listar();
         mav.addObject("paqueteP", paquete);
         return mav;
     }
@@ -54,9 +54,9 @@ public class DirectorComprasController {
     }
 
     @PostMapping("reponerproducto/actualizar")
-    public String reponerProducto(@ModelAttribute(name = "producto") CapsulaProducto obj) {
+    public String reponerProducto(@ModelAttribute(name = "producto") Product obj) {
         LocalDate date = LocalDate.now();
-        CapsulaOperacion opr = CapsulaOperacion.builder()
+        Operacion opr = Operacion.builder()
                 .proceso("REPO")
                 .tipo(1)
                 .producto(obj)
@@ -100,12 +100,12 @@ public class DirectorComprasController {
     @PostMapping("comprasProductos/guardar")
     public String guardarProducto() {
         LocalDate date = LocalDate.now();
-        List<CapsulaOperacion> paquete = new ArrayList<>();
-        CapsulaOperacion ope;
+        List<Operacion> paquete = new ArrayList<>();
+        Operacion ope;
         for (PastillaProducto cap : pastilla) {
-            CapsulaProducto p = SProducto.buscarProducto(cap.getIdProducto());
+            Product p = SProducto.buscarProducto(cap.getIdProducto());
             int cant = cap.getCantidad();
-            ope = CapsulaOperacion.builder()
+            ope = Operacion.builder()
                     .proceso("COM")
                     .tipo(2)
                     .producto(p)
